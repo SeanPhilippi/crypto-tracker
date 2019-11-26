@@ -1,12 +1,13 @@
 import React from 'react';
 import Welcome from './Welcome';
+import AppLayout from './AppLayout';
 import './App.css';
 
 const App = () => {
   return (
-    <div className="App">
+    <AppLayout>
       <Welcome />
-    </div>
+    </AppLayout>
   );
 };
 
