@@ -19,9 +19,11 @@ const ControlButtonElem = styled.div`
   `}
 `;
 
+const toProperCase = lower => lower[0].toUpperCase().concat(lower.slice(1));
+
 const ControlButton = ({ name, active }) => (
   <ControlButtonElem active={ active }>
-    { name }
+    { toProperCase(name) }
   </ControlButtonElem>
 );
 
