@@ -1,15 +1,18 @@
 import React from 'react';
-import AppLayout from './AppLayout';
+import Layout from './Layout';
+import { Provider } from './Provider';
 import Nav from './Nav';
 import Welcome from './Welcome';
 import './App.css';
 
 const App = () => {
   return (
-    <AppLayout>
-      <Nav/>
-      <Welcome />
-    </AppLayout>
+    <Layout>
+      <Provider>
+        <Nav/>
+        <Welcome />
+      </Provider>
+    </Layout>
   );
 };
 
