@@ -25,7 +25,7 @@ const toProperCase = lower => lower[0].toUpperCase().concat(lower.slice(1));
 const ControlButton = ({ name, active }) => (
   <Context.Consumer>
     {
-      ({ page }) => (
+      (page) => (
         <ControlButtonElem active={ page === name }>
           { toProperCase(name) }
         </ControlButtonElem>

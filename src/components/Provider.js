@@ -1,22 +1,13 @@
-import React, { createContext, Component } from 'react';
+import React, { createContext, useState } from 'react';
 
 export const Context = createContext();
 
-export class Provider extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      page: 'settings'
-    };
-  };
+export const Provider = ({ children }) => {
+const [page, setPage] = useState('settings');
 
-  setPage = page => this.setState({ page });
-
-  render() {
-    return (
-      <Context.Provider value={this.state}>
-        {this.props.children}
-      </Context.Provider>
-    );
-  };
+  return (
+    <Context.Provider value={ page }>
+      { children }
+    </Context.Provider>
+  );
 };
