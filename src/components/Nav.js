@@ -22,11 +22,14 @@ const ControlButtonElem = styled.div`
 
 const toProperCase = lower => lower[0].toUpperCase().concat(lower.slice(1));
 
-const ControlButton = ({ name, active }) => (
+const ControlButton = ({ name }) => (
   <Context.Consumer>
     {
-      (page) => (
-        <ControlButtonElem active={ page === name }>
+      ({ page, setPage }) => (
+        <ControlButtonElem
+          active={ page === name }
+          onClick={ () => setPage(name) }
+        >
           { toProperCase(name) }
         </ControlButtonElem>
       )
