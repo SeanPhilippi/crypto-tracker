@@ -17,7 +17,6 @@ export class Provider extends Component {
   setPage = page => this.setState({ page });
 
   savedSettings = () => {
-    console.log('savedsettings')
     let cryptoTracker = JSON.parse(localStorage.getItem('cryptoTracker'));
     if (!cryptoTracker) {
       // if no localStorage data, set firstVisit to true, and page to 'settings'
