@@ -1,13 +1,33 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, Component } from 'react';
 
 export const Context = createContext();
 
-export const Provider = ({ children }) => {
-const [page, setPage] = useState('settings');
+export class Provider extends Component {
 
-  return (
-    <Context.Provider value={{page, setPage}}>
-      { children }
-    </Context.Provider>
-  );
+  setPage = page => this.setState({ page });
+
+  savedSettings = () => {
+    console.log('savedsettings')
+    let cryptoTracker = JSON.parse(localStorage.getItem('cryptoTracker'));
+    if (!cryptoTracker) {
+      // if no localStorage data, set firstVisit to true, and page to 'settings'
+      return { page: 'settings', firstVisit: true };
+    }
+    return {};
+  };
+
+  state = {
+    page: 'dashboard',
+    firstVisit: false,
+    ...this.savedSettings(),
+    setPage: this.setPage,
+  };
+
+  render() {
+    return (
+      <Context.Provider value={ this.state }>
+        { this.props.children }
+      </Context.Provider>
+    );
+  };
 };

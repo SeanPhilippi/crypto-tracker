@@ -2,7 +2,7 @@ import React from 'react';
 import Layout from './Layout';
 import { Provider } from './Provider';
 import Nav from './Nav';
-import Welcome from './Welcome';
+import Settings from './Settings';
 import './App.css';
 
 const App = () => {
@@ -10,7 +10,7 @@ const App = () => {
     <Layout>
       <Provider>
         <Nav/>
-        <Welcome />
+        <Settings />
       </Provider>
     </Layout>
   );
