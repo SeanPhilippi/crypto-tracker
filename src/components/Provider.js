@@ -1,5 +1,4 @@
 import React, { createContext, Component } from 'react';
-
 import cc from 'cryptocompare';
 
 export const Context = createContext();
@@ -12,7 +11,6 @@ export class Provider extends Component {
 
   fetchCoins = async () => {
     const coinList = (await cc.coinList()).Data;
-    console.log(coinList)
     this.setState({ coinList });
   };
 
@@ -35,19 +33,21 @@ export class Provider extends Component {
     });
     localStorage.setItem('cryptoTracker', JSON.stringify({
       test: 'yo'
-    }))
+    }));
   };
-
+  // initial state
   state = {
-    page: 'dashboard',
+    page: 'settings',
     firstVisit: false,
     ...this.savedSettings(),
     setPage: this.setPage,
-    confirmFavorites: this.confirmFavorites
+    confirmFavorites: this.confirmFavorites,
+    coinList: {},
   };
 
   render() {
     return (
+      // like Redux Provider that is given the store
       <Context.Provider value={ this.state }>
         { this.props.children }
       </Context.Provider>
