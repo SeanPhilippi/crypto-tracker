@@ -3,6 +3,8 @@ import cc from 'cryptocompare';
 
 export const Context = createContext();
 
+const MAX_FAVORITES = 10;
+
 export class Provider extends Component {
 
   componentDidMount = () => {
@@ -12,6 +14,18 @@ export class Provider extends Component {
   fetchCoins = async () => {
     const coinList = (await cc.coinList()).Data;
     this.setState({ coinList });
+  };
+
+  addCoin = key => {
+    if (this.state.favorites.length < MAX_FAVORITES) {
+      this.setState({ favorites: [...this.state.favorites, key] });
+    }
+  };
+
+  removeCoin = key => {
+    if (this.state.favorites.length) {
+      this.setState({ favorites: this.state.favorites.filter(coin => coin !== key ) })
+    }
   };
 
   setPage = page => this.setState({ page });
@@ -36,10 +50,13 @@ export class Provider extends Component {
   };
   // initial state
   state = {
-    page: 'settings',
+    page: 'dashboard',
+    favorites: ['ZEC', 'DOGE', 'ETH', 'XMR'], // keys for coins
     firstVisit: false,
     ...this.savedSettings(),
     setPage: this.setPage,
+    addCoin: this.addCoin,
+    removeCoin: this.removeCoin,
     confirmFavorites: this.confirmFavorites,
     coinList: {},
   };
