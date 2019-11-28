@@ -1,8 +1,20 @@
 import React, { createContext, Component } from 'react';
 
+import cc from 'cryptocompare';
+
 export const Context = createContext();
 
 export class Provider extends Component {
+
+  componentDidMount = () => {
+    this.fetchCoins();
+  };
+
+  fetchCoins = async () => {
+    const coinList = (await cc.coinList()).Data;
+    console.log(coinList)
+    this.setState({ coinList });
+  };
 
   setPage = page => this.setState({ page });
 
