@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import { Context } from './Provider';
 
 const Logo = styled.div`
-  font-size: 1.5rem;
+  font-size: 1.7rem;
 `;
 
 const Nav = styled.div`

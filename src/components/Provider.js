@@ -16,11 +16,22 @@ export class Provider extends Component {
     return {};
   };
 
+  confirmFavorites = () => {
+    this.setState({
+      firstVisit: false,
+      page: 'dashboard'
+    });
+    localStorage.setItem('cryptoTracker', JSON.stringify({
+      test: 'yo'
+    }))
+  };
+
   state = {
     page: 'dashboard',
     firstVisit: false,
     ...this.savedSettings(),
     setPage: this.setPage,
+    confirmFavorites: this.confirmFavorites
   };
 
   render() {

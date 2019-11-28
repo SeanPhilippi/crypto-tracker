@@ -5,6 +5,7 @@ import { Context } from './Provider';
 const ConfirmButtonStyled = styled.div`
   margin: 20px;
   color: green;
+  cursor: pointer;
 `;
 
 const CenterDiv = styled.div`

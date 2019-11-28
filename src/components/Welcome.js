@@ -1,29 +1,16 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
-
-const Button = styled.button`
-  color: red;
-  border: solid black 1px;
-  width: 5rem;
-  ${props => props.primary && css`
-    color: palevioletred;
-  `}
-`;
-
-const TomatoButton = styled(Button)`
-  color: tomato;
-  border-color: tomato;
-`;
+import { Context } from './Provider';
 
 const Welcome = () => (
-<>
-    <h1>
-      Welcome to Crypto-Tracker
-    </h1>
-    <Button>Yo</Button>
-    <Button primary>Yo dawg</Button>
-    <TomatoButton>Tomato</TomatoButton>
-</>
+  <Context.Consumer>
+    {
+      ({ firstVisit }) => firstVisit ? (
+        <div>
+          Welcome to CryptoTracker, please select your favorite coins to begin.
+        </div>
+      ) : null
+    }
+  </Context.Consumer>
 );
 
 export default Welcome;
