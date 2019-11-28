@@ -4,6 +4,7 @@ import { Provider } from './Provider';
 import Nav from './Nav';
 import Settings from './Settings';
 import Dashboard from './Dashboard';
+import Content from '../shared/Content';
 import './App.css';
 
 const App = () => {
@@ -11,8 +12,10 @@ const App = () => {
     <Layout>
       <Provider>
         <Nav/>
-        <Settings />
-        <Dashboard />
+        <Content>
+          <Settings />
+          <Dashboard />
+        </Content>
       </Provider>
     </Layout>
   );
