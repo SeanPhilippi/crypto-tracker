@@ -23,10 +23,10 @@ export class Provider extends Component {
   };
 
   removeCoin = key => {
-    if (this.state.favorites.length) {
-      this.setState({ favorites: this.state.favorites.filter(coin => coin !== key ) })
-    }
+    this.setState({ favorites: this.state.favorites.filter(coin => coin !== key ) });
   };
+
+  isInFavorites = key => this.state.favorites.includes(key);
 
   setPage = page => this.setState({ page });
 
@@ -58,6 +58,7 @@ export class Provider extends Component {
     addCoin: this.addCoin,
     removeCoin: this.removeCoin,
     confirmFavorites: this.confirmFavorites,
+    isInFavorites: this.isInFavorites,
     coinList: {},
   };
 
