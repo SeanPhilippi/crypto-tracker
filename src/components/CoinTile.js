@@ -12,11 +12,13 @@ const CoinTile = ({ coinKey, topSection }) => {
   return (
     <Context.Consumer>
       {
-        ({ coinList, addCoin, removeCoin }) => {
+        ({ coinList, addCoin, removeCoin, isInFavorites }) => {
           const coin = coinList[coinKey];
           let TileClass = SelectableTile;
           if (topSection) {
             TileClass = DeletableTile;
+          } else if (isInFavorites(coinKey)) {
+            TileClass = DisabledTile;
           }
 
           return (
