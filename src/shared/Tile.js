@@ -11,3 +11,10 @@ export const Tile = styled.div`
   ${ backgroundColor1 };
   padding: 10px;
 `;
+
+export const SelectableTile = styled(Tile)`
+  &:hover {
+    cursor: pointer;
+    ${ cyanBoxShadow };
+  }
+`;
