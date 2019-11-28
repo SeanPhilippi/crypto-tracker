@@ -3,6 +3,7 @@ import Layout from './Layout';
 import { Provider } from './Provider';
 import Nav from './Nav';
 import Settings from './Settings';
+import Dashboard from './Dashboard';
 import './App.css';
 
 const App = () => {
@@ -11,6 +12,7 @@ const App = () => {
       <Provider>
         <Nav/>
         <Settings />
+        <Dashboard />
       </Provider>
     </Layout>
   );

@@ -1,12 +1,13 @@
 import React from 'react';
 import ConfirmButton from './ConfirmButton';
 import Welcome from './Welcome';
+import Page from '../shared/Page';
 
 const Settings = () => (
-  <div>
+  <Page name="settings">
     <Welcome />
     <ConfirmButton />
-  </div>
+  </Page>
 );
 
 export default Settings;
