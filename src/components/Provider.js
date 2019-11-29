@@ -8,12 +8,10 @@ const MAX_FAVORITES = 10;
 export class Provider extends Component {
 
   componentDidMount = () => {
-    console.log('fetching')
     this.fetchCoins();
   };
 
   fetchCoins = async () => {
-    console.log('fetchekfke')
     const coinList = (await cc.coinList()).Data;
     this.setState({ coinList });
   };
@@ -56,14 +54,14 @@ export class Provider extends Component {
   state = {
     page: 'dashboard',
     favorites: ['ZEC', 'DOGE', 'ETH', 'XMR'], // keys for coins
-    firstVisit: false,
+    firstVisit: true,
     ...this.savedSettings(),
     setPage: this.setPage,
     addCoin: this.addCoin,
     removeCoin: this.removeCoin,
-    confirmFavorites: this.confirmFavorites,
     isInFavorites: this.isInFavorites,
-    coinList: {},
+    confirmFavorites: this.confirmFavorites,
+    coinList: null // not empty object, needs to be falsey for Content.js logic
   };
 
   render() {
