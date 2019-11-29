@@ -1,5 +1,5 @@
 import React, { createContext, Component } from 'react';
-import cc from 'cryptocompare';
+const cc = require('cryptocompare');
 
 export const Context = createContext();
 
@@ -8,10 +8,12 @@ const MAX_FAVORITES = 10;
 export class Provider extends Component {
 
   componentDidMount = () => {
+    console.log('fetching')
     this.fetchCoins();
   };
 
   fetchCoins = async () => {
+    console.log('fetchekfke')
     const coinList = (await cc.coinList()).Data;
     this.setState({ coinList });
   };
@@ -30,24 +32,26 @@ export class Provider extends Component {
 
   setPage = page => this.setState({ page });
 
-  savedSettings = () => {
-    let cryptoTracker = JSON.parse(localStorage.getItem('cryptoTracker'));
-    if (!cryptoTracker) {
-      // if no localStorage data, set firstVisit to true, and page to 'settings'
-      return { page: 'settings', firstVisit: true };
-    }
-    return {};
-  };
-
   confirmFavorites = () => {
     this.setState({
       firstVisit: false,
       page: 'dashboard'
     });
-    localStorage.setItem('cryptoTracker', JSON.stringify({
-      test: 'yo'
+    localStorage.setItem('cryptoTrackerData', JSON.stringify({
+      favorites: this.state.favorites
     }));
   };
+
+  savedSettings = () => {
+    let cryptoTrackerData = JSON.parse(localStorage.getItem('cryptoTrackerData'));
+    if (!cryptoTrackerData) {
+      // if no localStorage data, set firstVisit to true, and page to 'settings'
+      return { page: 'settings', firstVisit: true };
+    }
+    const { favorites } = cryptoTrackerData;
+    return { favorites };
+  };
+
   // initial state
   state = {
     page: 'dashboard',
