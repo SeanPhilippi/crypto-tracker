@@ -9,11 +9,36 @@ export class Provider extends Component {
 
   componentDidMount = () => {
     this.fetchCoins();
+    this.fetchPrices();
   };
 
   fetchCoins = async () => {
     const coinList = (await cc.coinList()).Data;
     this.setState({ coinList });
+  };
+
+  fetchPrices = async () => {
+    // store return of price data for favorites in prices, set to state.prices
+    // but only if not first visit, don't want data for default coins in state.favorites
+    const prices = !this.state.firstVisit && await this.prices();
+    this.setState({ prices });
+  };
+
+  prices = async () => {
+    const { favorites } = this.state;
+    const returnData = [];
+    for (let i = 0; i < favorites.length; i++) {
+      try {
+        // takes an array of strings (from symbols) and another array of strings (to symbols)
+        // get all current trading info (price, vol, open, high, low, etc.) on favorite -> USD
+        // returns an object of objects
+        const priceData = await cc.priceFull(favorites[i], 'USD');
+        returnData.push(priceData);
+      } catch(e) {
+        console.warn('Fetch price error: ', e);
+      }
+    }
+    return returnData;
   };
 
   addCoin = key => {
