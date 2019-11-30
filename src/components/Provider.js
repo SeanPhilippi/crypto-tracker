@@ -30,6 +30,8 @@ export class Provider extends Component {
 
   setPage = page => this.setState({ page });
 
+  setFilteredCoins = filteredCoins => this.setState({ filteredCoins });
+
   confirmFavorites = () => {
     this.setState({
       firstVisit: false,
@@ -61,6 +63,7 @@ export class Provider extends Component {
     removeCoin: this.removeCoin,
     isInFavorites: this.isInFavorites,
     confirmFavorites: this.confirmFavorites,
+    setFilteredCoins: this.setFilteredCoins,
     coinList: null // not empty object, needs to be falsey for Content.js logic
   };
 
