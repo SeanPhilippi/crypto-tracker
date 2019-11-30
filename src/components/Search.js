@@ -19,22 +19,30 @@ const SearchInput = styled.input`
   place-self: center left;
 `; // align-self + justify-self
 
-const handleFilter = _.debounce((inputValue, coinList, setFilteredCoins) => {
+const handleFilter = _.debounce((searchText, coinList, setFilteredCoins) => {
   // get array of all coin symbols
-  console.log('coinList', coinList)
+  // store array of coinList keys which are the coin symbols
   const coinSymbols = Object.keys(coinList);
-  console.log('coinSymbols', coinSymbols)
-  // get an array of all the coin names
+  // get an array of all the coin names using the array of symbols that were keys on the coinList
+  // object, and accessing the coinNames of those objects using those symbols
   const coinNames = coinSymbols.map(symbol => coinList[symbol].CoinName);
-  const allStringsToSearch = coinSymbols.concat(coinNames);
-  console.log('allStringsToSearch', allStringsToSearch)
-  const fuzzyResults = fuzzy.filter(inputValue, allStringsToSearch, {});
-  console.log('fuzzyResults', fuzzyResults);
+  // combine the coinSymbols array with the coinNames array for a more useful search
+  const searchStringsArray = coinSymbols.concat(coinNames);
+  const fuzzyResults = fuzzy
+    .filter(searchText, searchStringsArray)
+    .map(result => result.string);
+  // return an object from an object and pick a list of coin keys based on a callback function
+  const filteredCoins = _.pickBy(coinList, (result, symKey) => {
+    const coinName = result.CoinName;
+    return fuzzyResults.includes(symKey) || fuzzyResults.includes(coinName);
+  })
+  // set the filtered coins obj to state.filteredCoins
+  setFilteredCoins(filteredCoins);
 }, 500);
 
 const filterCoins = (e, setFilteredCoins, coinList) => {
-  const inputValue = e.target.value;
-  handleFilter(inputValue, coinList, setFilteredCoins);
+  const searchText = e.target.value;
+  handleFilter(searchText, coinList, setFilteredCoins);
 };
 
 const Search = () => (
