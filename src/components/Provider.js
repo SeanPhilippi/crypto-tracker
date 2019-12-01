@@ -18,11 +18,14 @@ export class Provider extends Component {
   };
 
   fetchPrices = async () => {
+    if (this.state.firstVisit) return;
     // store return of price data for favorites in prices, set to state.prices
     // but only if not first visit, don't want data for default coins in state.favorites
-    const prices = !this.state.firstVisit && await this.prices();
+    const prices = await this.prices();
     console.log('fetched prices', prices)
-    this.setState({ prices });
+    // filter the empty price objects
+    const filteredPrices = prices.filter(price => Object.keys(price).length);
+    this.setState({ prices: filteredPrices });
   };
 
   prices = async () => {

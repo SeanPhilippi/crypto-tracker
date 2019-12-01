@@ -3,7 +3,7 @@ import Layout from './Layout';
 import { Provider } from './Provider';
 import Nav from './Nav';
 import Settings from './Settings';
-import Dashboard from './Dashboard';
+import Dashboard from './Dashboard/Dashboard';
 import Content from '../shared/Content';
 import './App.css';
 
