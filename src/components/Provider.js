@@ -21,6 +21,7 @@ export class Provider extends Component {
     // store return of price data for favorites in prices, set to state.prices
     // but only if not first visit, don't want data for default coins in state.favorites
     const prices = !this.state.firstVisit && await this.prices();
+    console.log('fetched prices', prices)
     this.setState({ prices });
   };
 
@@ -58,17 +59,22 @@ export class Provider extends Component {
   setFilteredCoins = filteredCoins => this.setState({ filteredCoins });
 
   confirmFavorites = () => {
-    this.setState({
-      firstVisit: false,
-      page: 'dashboard'
-    });
+    this.setState(
+      {
+        firstVisit: false,
+        page: 'dashboard',
+        prices: null,
+      }, () => {
+        this.fetchPrices();
+      }
+    );
     localStorage.setItem('cryptoTrackerData', JSON.stringify({
       favorites: this.state.favorites
     }));
   };
 
   savedSettings = () => {
-    let cryptoTrackerData = JSON.parse(localStorage.getItem('cryptoTrackerData'));
+    const cryptoTrackerData = JSON.parse(localStorage.getItem('cryptoTrackerData'));
     if (!cryptoTrackerData) {
       // if no localStorage data, set firstVisit to true, and page to 'settings'
       return { page: 'settings', firstVisit: true };
