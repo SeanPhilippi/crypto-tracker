@@ -78,6 +78,14 @@ export class Provider extends Component {
     }));
   };
 
+  setCurrentFavorite = sym => {
+    this.setState({ currentFavorite: sym });
+    localStorage.setItem('cryptoTrackerData', JSON.stringify({
+      ...JSON.parse(localStorage.getItem('cryptoTrackerData')),
+      currentFavorite: sym,
+    }))
+  };
+
   savedSettings = () => {
     const cryptoTrackerData = JSON.parse(localStorage.getItem('cryptoTrackerData'));
     if (!cryptoTrackerData) {
@@ -100,7 +108,8 @@ export class Provider extends Component {
     isInFavorites: this.isInFavorites,
     confirmFavorites: this.confirmFavorites,
     setFilteredCoins: this.setFilteredCoins,
-    currentFavorite: 'ZEC',
+    setCurrentFavorite: this.setCurrentFavorite,
+    // currentFavorite: 'ZEC',
     coinList: null // not empty object, needs to be falsey for Content.js logic
   };
 
