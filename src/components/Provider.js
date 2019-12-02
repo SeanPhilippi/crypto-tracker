@@ -62,6 +62,7 @@ export class Provider extends Component {
   setFilteredCoins = filteredCoins => this.setState({ filteredCoins });
 
   confirmFavorites = () => {
+    const currentFavorite = this.state.favorites[0];
     this.setState(
       {
         firstVisit: false,
@@ -72,7 +73,8 @@ export class Provider extends Component {
       }
     );
     localStorage.setItem('cryptoTrackerData', JSON.stringify({
-      favorites: this.state.favorites
+      favorites: this.state.favorites,
+      currentFavorite,
     }));
   };
 
@@ -82,8 +84,8 @@ export class Provider extends Component {
       // if no localStorage data, set firstVisit to true, and page to 'settings'
       return { page: 'settings', firstVisit: true };
     }
-    const { favorites } = cryptoTrackerData;
-    return { favorites };
+    const { favorites, currentFavorite } = cryptoTrackerData;
+    return { favorites, currentFavorite };
   };
 
   // initial state
@@ -98,6 +100,7 @@ export class Provider extends Component {
     isInFavorites: this.isInFavorites,
     confirmFavorites: this.confirmFavorites,
     setFilteredCoins: this.setFilteredCoins,
+    currentFavorite: 'ZEC',
     coinList: null // not empty object, needs to be falsey for Content.js logic
   };
 

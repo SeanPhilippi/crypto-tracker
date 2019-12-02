@@ -1,7 +1,8 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { SelectableTile } from '../../shared/Tile';
-import { fontSizeS, fontSizeL } from '../../shared/styles';
+import { Context } from '../Provider';
+import { fontSizeS, fontSizeL, cyanBoxShadow } from '../../shared/styles';
 import { CoinHeaderGridStyled } from '../CoinHeaderGrid';
 
 const formatNumber = number => +(number + '').slice(0, 7);
@@ -30,11 +31,15 @@ const PriceTileStyled = styled(SelectableTile)`
     grid-gap: 5px;
     justify-items: right;
   ` }
+  ${ props => props.currentFavorite && css`
+    ${ cyanBoxShadow };
+    pointer-events: none;
+  ` }
 `;
 
-const PriceTile = ({ sym, data }) => {
+const PriceTile = ({ sym, data, currentFavorite }) => {
   return (
-    <PriceTileStyled>
+    <PriceTileStyled currentFavorite={ currentFavorite }>
       <CoinHeaderGridStyled >
         <div>{ sym }</div>
         <ChangePercentStyled red={ data.CHANGEPCT24HOUR < 0 }>
@@ -48,9 +53,9 @@ const PriceTile = ({ sym, data }) => {
   );
 };
 
-const PriceTileCompact = ({ sym, data }) => {
+const PriceTileCompact = ({ sym, data, currentFavorite }) => {
   return (
-    <PriceTileStyled compact>
+    <PriceTileStyled compact currentFavorite={ currentFavorite }>
       <JustifyLeft>{ sym }</JustifyLeft>
       <ChangePercentStyled red={ data.CHANGEPCT24HOUR < 0 }>
         { formatNumber(data.CHANGEPCT24HOUR) }
@@ -67,7 +72,17 @@ export default function({ price, idx }) {
   const data = price[sym]['USD'];
   const TileClass = idx < 5 ? PriceTile : PriceTileCompact;
   return (
-    <TileClass sym={ sym } data={ data }>
-    </TileClass>
+    <Context.Consumer>
+      {
+        ({ currentFavorite }) => (
+          <TileClass
+            sym={ sym }
+            data={ data }
+            currentFavorite={ currentFavorite === sym }
+          >
+          </TileClass>
+        )
+      }
+    </Context.Consumer>
   )
 };
