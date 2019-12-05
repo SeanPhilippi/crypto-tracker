@@ -11,7 +11,7 @@ if (lightTheme) {
   document.body.style.color = '#061a44';
 }
 
-export const backgroundColor1 = `background-color: ${ color1 }`;  //light blue
+export const backgroundColor1 = `background-color: ${ color1 }`;  // dark blue
 export const backgroundColor2 = `background-color: ${ color2 };`;
 export const backgroundColor3 = `background-color: ${ color3 };`; // cyan background
 

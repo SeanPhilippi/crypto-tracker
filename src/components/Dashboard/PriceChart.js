@@ -1,8 +1,11 @@
 import React from 'react';
-import highchartscConfig from './highchartsConfig';
+import ReactHighcharts from 'react-highcharts';
 import { Context } from '../Provider';
 import { Tile } from '../shared/Tile';
-import ReactHighcharts from 'react-highcharts';
+import highchartscConfig from './highchartsConfig';
+import highchartsTheme from './highchartsTheme';
+
+ReactHighcharts.Highcharts.setOptions(highchartsTheme);
 
 const PriceChart = () => (
   <Context>
