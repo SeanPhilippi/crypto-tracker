@@ -14,10 +14,13 @@ const Nav = styled.div`
 
 const ControlButtonElem = styled.div`
   cursor: pointer;
-  ${props => props.active && css`
+  ${ props => props.active && css`
     color: cyan;
     text-shadow: 0 0 10px cyan;
-  `}
+  ` }
+  ${ props => props.hidden && css`
+    display: none;
+  ` }
 `;
 
 const toProperCase = lower => lower[0].toUpperCase().concat(lower.slice(1));
@@ -25,10 +28,11 @@ const toProperCase = lower => lower[0].toUpperCase().concat(lower.slice(1));
 const ControlButton = ({ name }) => (
   <Context.Consumer>
     {
-      ({ page, setPage }) => (
+      ({ page, setPage, firstVisit }) => (
         <ControlButtonElem
           active={ page === name }
           onClick={ () => setPage(name) }
+          hidden={ firstVisit && name === 'dashboard' }
         >
           { toProperCase(name) }
         </ControlButtonElem>
