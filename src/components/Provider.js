@@ -31,7 +31,9 @@ export class Provider extends Component {
   };
 
   fetchHistoricalData = async () => {
+    console.log('fetchistorical data')
     if (this.state.firstVisit) return;
+    console.log('got to results')
     const results = await this.historical();
     console.log('results', results);
   };
@@ -52,7 +54,9 @@ export class Provider extends Component {
           moment().subtract({ months: units }).toDate()
         )
       );
-    }
+    };
+    // returns a stingle promise only after all the promises in the array given have resolved
+    return Promise.all(promises);
   };
 
   prices = async () => {
@@ -127,7 +131,7 @@ export class Provider extends Component {
   state = {
     page: 'settings',
     favorites: ['ZEC', 'DOGE', 'ETH', 'XMR'], // keys for coins
-    firstVisit: true,
+    firstVisit: false,
     ...this.savedSettings(),
     setPage: this.setPage,
     addCoin: this.addCoin,
