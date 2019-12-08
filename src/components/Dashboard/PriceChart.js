@@ -20,6 +20,7 @@ const PriceChart = () => (
             <option value='days'>Days</option>
             <option value='weeks'>Weeks</option>
             <option value='months'>Months</option>
+            <option value='years'>Years</option>
           </ChartSelect>
           {
             historicalData

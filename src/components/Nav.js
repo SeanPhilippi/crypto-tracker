@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { Context } from './Provider';
+import { color3, textHover } from './shared/styles';
 
 const Logo = styled.div`
   font-size: 1.7rem;
@@ -15,8 +16,8 @@ const Nav = styled.div`
 const ControlButtonElem = styled.div`
   cursor: pointer;
   ${ props => props.active && css`
-    color: cyan;
-    text-shadow: 0 0 10px cyan;
+    color: ${ color3 };
+    ${ textHover };
   ` }
   ${ props => props.hidden && css`
     display: none;

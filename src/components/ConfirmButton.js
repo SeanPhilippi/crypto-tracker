@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Context } from './Provider';
-import { fontSizeM, cyanBoxShadow, color3 } from './shared/styles';
+import { fontSizeM, textHover, color3 } from './shared/styles';
 
 const ConfirmButtonStyled = styled.div`
   margin: 20px;
@@ -10,7 +10,7 @@ const ConfirmButtonStyled = styled.div`
   padding: 5px;
   cursor: pointer;
   &:hover {
-    ${ cyanBoxShadow }
+    ${ textHover }
   }
 `;
 

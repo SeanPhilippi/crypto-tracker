@@ -7,6 +7,7 @@ const ChartSelect = styled.select`
   color: #1163c9;
   border: 1px solid;
   float: right;
+  outline: none;
 `;
 
 export default ChartSelect;
