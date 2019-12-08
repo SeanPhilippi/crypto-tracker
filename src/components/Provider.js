@@ -36,10 +36,13 @@ export class Provider extends Component {
     if (this.state.firstVisit) return;
     console.log('fetching results for historicalData')
     const results = await this.historical();
-    const historicalData = results.map((ticker, index) => [
-      moment().subtract({ months: TIME_UNITS - index }).valueOf(),
-      ticker.USD
-    ]);
+    const historicalData = [{
+      name: this.state.currentFavorite,
+      data: results.map((ticker, index) => [
+        moment().subtract({ months: TIME_UNITS - index }).valueOf(),
+        ticker.USD
+      ])
+    }];
     console.log('historical', historicalData)
     this.setState({ historicalData })
   };
@@ -104,19 +107,28 @@ export class Provider extends Component {
       {
         firstVisit: false,
         page: 'dashboard',
+        currentFavorite,
         prices: null,
+        historical: null,
       }, () => {
         this.fetchPrices();
+        this.fetchHistoricalData();
       }
     );
-    localStorage.setItem('cryptoTrackerData', JSON.stringify({
-      favorites: this.state.favorites,
-      currentFavorite,
-    }));
+    localStorage.setItem(
+      'cryptoTrackerData',
+      JSON.stringify({
+        favorites: this.state.favorites,
+        currentFavorite,
+      })
+    );
   };
 
   setCurrentFavorite = sym => {
-    this.setState({ currentFavorite: sym });
+    this.setState(
+      { currentFavorite: sym, historicalData: null },
+      this.fetchHistoricalData
+    );
     localStorage.setItem('cryptoTrackerData', JSON.stringify({
       ...JSON.parse(localStorage.getItem('cryptoTrackerData')),
       currentFavorite: sym,

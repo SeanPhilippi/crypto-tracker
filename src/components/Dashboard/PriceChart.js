@@ -12,7 +12,11 @@ const PriceChart = () => (
     {
       ({ historicalData }) => (
         <Tile>
-          <ReactHighcharts config={ highchartsConfig(historicalData) }/>
+          {
+            historicalData
+            ? <ReactHighcharts config={ highchartsConfig(historicalData) }/>
+            : <div>Loading Historical Data...</div>
+          }
         </Tile>
       )
     }
