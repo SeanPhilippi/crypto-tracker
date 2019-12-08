@@ -3,6 +3,7 @@ import ReactHighcharts from 'react-highcharts';
 import { Context } from '../Provider';
 import { Tile } from '../shared/Tile';
 import ChartSelect from './ChartSelect';
+import Loading from '../shared/Loading';
 import highchartsConfig from './highchartsConfig';
 import highchartsTheme from './highchartsTheme';
 
@@ -25,7 +26,7 @@ const PriceChart = () => (
           {
             historicalData
             ? <ReactHighcharts config={ highchartsConfig(historicalData) }/>
-            : <div>Loading Historical Data...</div>
+            : <Loading message='Loading Historical Data'/>
           }
         </Tile>
       )

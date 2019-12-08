@@ -12,6 +12,11 @@ export const Tile = styled.div`
   padding: 10px;
 `;
 
+export const ChartTile = styled(Tile)`
+  display: flex;
+  align-items: center;
+`;
+
 export const SelectableTile = styled(Tile)`
   &:hover {
     cursor: pointer;

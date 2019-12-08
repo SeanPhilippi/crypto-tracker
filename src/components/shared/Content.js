@@ -1,15 +1,20 @@
 import React from 'react';
 import { Context } from '../Provider';
+import Loading from './Loading';
 
 const Content = ({ children }) => (
   <Context.Consumer>
     {
       ({ coinList, prices, firstVisit }) => {
         if (!coinList) {
-          return <div>Loading Coins</div>;
+          return (
+            <Loading message='Loading Coins'/>
+          );
         }
         if (!firstVisit && !prices) {
-          return <div>Loading Prices</div>;
+          return (
+            <Loading message='Loading Prices'/>
+          );
         }
         return <div>{ children }</div>;
       }
