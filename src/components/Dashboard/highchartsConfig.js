@@ -11,7 +11,7 @@ export default function(historicalData) {
         text: "Price"
       }
     },
-    xAsix: { type: 'datetime' },
+    xAxis: { type: 'datetime' },
     legend: {
       layout: "vertical",
       align: "right",

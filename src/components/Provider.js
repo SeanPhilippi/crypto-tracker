@@ -39,7 +39,7 @@ export class Provider extends Component {
     const historicalData = [{
       name: this.state.currentFavorite,
       data: results.map((ticker, index) => [
-        moment().subtract({ months: TIME_UNITS - index }).valueOf(),
+        moment().subtract({ [this.state.timeInterval]: TIME_UNITS - index }).valueOf(),
         ticker.USD
       ])
     }];
@@ -60,7 +60,7 @@ export class Provider extends Component {
           ['USD'],
           // what date. units is decremented with each loop which will
           // create a series of price data points that can be charted
-          moment().subtract({ months: units }).toDate()
+          moment().subtract({ [this.state.timeInvterval]: units }).toDate()
         )
       );
     };
@@ -145,6 +145,14 @@ export class Provider extends Component {
     return { favorites, currentFavorite };
   };
 
+  handleChartSelect = value => {
+    console.log('value', value)
+    this.setState({
+      timeInterval: value,
+      historical: null
+    }, this.fetchHistoricalData);
+  };
+
   // initial state
   state = {
     page: 'settings',
@@ -158,6 +166,8 @@ export class Provider extends Component {
     confirmFavorites: this.confirmFavorites,
     setFilteredCoins: this.setFilteredCoins,
     setCurrentFavorite: this.setCurrentFavorite,
+    handleChartSelect: this.handleChartSelect,
+    timeInterval: 'months',
     // currentFavorite: 'ZEC',
     coinList: null // not empty object, needs to be falsey for Content.js logic
   };
