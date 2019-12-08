@@ -1,15 +1,17 @@
 import React, { createContext, Component } from 'react';
+import moment from 'moment';
 const cc = require('cryptocompare');
 
 export const Context = createContext();
 
 const MAX_FAVORITES = 10;
+const TIME_UNITS = 10;
 
 export class Provider extends Component {
-
   componentDidMount = () => {
     this.fetchCoins();
     this.fetchPrices();
+    this.fetchHistoricalData();
   };
 
   fetchCoins = async () => {
@@ -28,6 +30,31 @@ export class Provider extends Component {
     this.setState({ prices: filteredPrices });
   };
 
+  fetchHistoricalData = async () => {
+    if (this.state.firstVisit) return;
+    const results = await this.historical();
+    console.log('results', results);
+  };
+
+  historical = () => {
+    const promises = [];
+    for (let units = TIME_UNITS; units > 0; units--) {
+      // pushing data points into promises array for data at different months
+      promises.push(
+        // fetches historical price data from crypto-compare
+        cc.priceHistorical(
+          // what coin for fetching historical price data from crypto-compare
+          this.state.currentFavorite,
+          // what currency for the data
+          ['USD'],
+          // what date. units is decremented with each loop which will
+          // create a series of price data points that can be charted
+          moment().subtract({ months: units }).toDate()
+        )
+      );
+    }
+  };
+
   prices = async () => {
     const { favorites } = this.state;
     const returnData = [];
@@ -38,8 +65,8 @@ export class Provider extends Component {
         // returns an object of objects
         const priceData = await cc.priceFull(favorites[i], 'USD');
         returnData.push(priceData);
-      } catch(e) {
-        console.warn('Fetch price error: ', e);
+      } catch(err) {
+        console.warn('Fetch price error: ', err);
       }
     }
     return returnData;

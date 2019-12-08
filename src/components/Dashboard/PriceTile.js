@@ -1,8 +1,8 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { SelectableTile } from '../../shared/Tile';
+import { SelectableTile } from '../shared/Tile';
 import { Context } from '../Provider';
-import { fontSizeS, fontSizeL, cyanBoxShadow } from '../../shared/styles';
+import { fontSizeS, fontSizeL, cyanBoxShadow } from '../shared/styles';
 import { CoinHeaderGridStyled } from '../CoinHeaderGrid';
 
 const formatNumber = number => +(number + '').slice(0, 7);
@@ -47,7 +47,7 @@ const PriceTile = ({ sym, data, currentFavorite, setCurrentFavorite }) => {
         </ChangePercentStyled>
       </CoinHeaderGridStyled>
       <TickerPrice>
-        ${ formatNumber(data.PRICE) }
+        ${ formatNumber(data.PRICE) }%
       </TickerPrice>
     </PriceTileStyled>
   );

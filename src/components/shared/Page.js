@@ -1,5 +1,5 @@
 import React from 'react';
-import { Context } from '../components/Provider';
+import { Context } from '../Provider';
 
 const Page = ({ name, children }) => (
   <Context.Consumer>
