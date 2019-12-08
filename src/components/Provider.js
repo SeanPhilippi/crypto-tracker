@@ -1,6 +1,7 @@
 import React, { createContext, Component } from 'react';
 import moment from 'moment';
 const cc = require('cryptocompare');
+cc.setApiKey(process.env.REACT_APP_CRYPTO_API_KEY);
 
 export const Context = createContext();
 
@@ -31,11 +32,16 @@ export class Provider extends Component {
   };
 
   fetchHistoricalData = async () => {
-    console.log('fetchistorical data')
+    console.log('in fetchHistoricalData')
     if (this.state.firstVisit) return;
-    console.log('got to results')
+    console.log('fetching results for historicalData')
     const results = await this.historical();
-    console.log('results', results);
+    const historicalData = results.map((ticker, index) => [
+      moment().subtract({ months: TIME_UNITS - index }).valueOf(),
+      ticker.USD
+    ]);
+    console.log('historical', historicalData)
+    this.setState({ historicalData })
   };
 
   historical = () => {

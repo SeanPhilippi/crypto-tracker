@@ -1,4 +1,4 @@
-export default function() {
+export default function(historicalData) {
   return {
     title: {
       text: ""
@@ -11,6 +11,7 @@ export default function() {
         text: "Price"
       }
     },
+    xAsix: { type: 'datetime' },
     legend: {
       layout: "vertical",
       align: "right",
@@ -24,12 +25,7 @@ export default function() {
         pointStart: 2010
       }
     },
-    series: [
-      {
-        name: "Installation",
-        data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
-      },
-    ],
+    series: historicalData,
     responsive: {
       rules: [
         {

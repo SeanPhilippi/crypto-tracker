@@ -2,21 +2,21 @@ import React from 'react';
 import ReactHighcharts from 'react-highcharts';
 import { Context } from '../Provider';
 import { Tile } from '../shared/Tile';
-import highchartscConfig from './highchartsConfig';
+import highchartsConfig from './highchartsConfig';
 import highchartsTheme from './highchartsTheme';
 
 ReactHighcharts.Highcharts.setOptions(highchartsTheme);
 
 const PriceChart = () => (
-  <Context>
+  <Context.Consumer>
     {
-      () => (
+      ({ historicalData }) => (
         <Tile>
-          <ReactHighcharts config={ highchartscConfig() }/>
+          <ReactHighcharts config={ highchartsConfig(historicalData) }/>
         </Tile>
       )
     }
-  </Context>
+  </Context.Consumer>
 );
 
 export default PriceChart;

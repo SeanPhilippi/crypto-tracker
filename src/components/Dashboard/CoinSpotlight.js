@@ -9,7 +9,7 @@ const SpotlightName = styled.h2`
 `;
 
 const CoinSpotlight = () => (
-  <Context>
+  <Context.Consumer>
     {
       ({ currentFavorite, coinList }) => (
         <Tile>
@@ -18,7 +18,7 @@ const CoinSpotlight = () => (
         </Tile>
       )
     }
-  </Context>
+  </Context.Consumer>
 );
 
 export default CoinSpotlight;
