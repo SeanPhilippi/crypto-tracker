@@ -149,7 +149,7 @@ export class Provider extends Component {
     console.log('value', value)
     this.setState({
       timeInterval: value,
-      historical: null
+      historicalData: null
     }, this.fetchHistoricalData);
   };
 
