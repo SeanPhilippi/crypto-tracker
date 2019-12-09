@@ -153,6 +153,10 @@ export class Provider extends Component {
     }, this.fetchHistoricalData);
   };
 
+  changeTheme = () => {
+    this.setState({ darkTheme: !this.state.darkTheme })
+  };
+
   // initial state
   state = {
     page: 'settings',
@@ -167,6 +171,8 @@ export class Provider extends Component {
     setFilteredCoins: this.setFilteredCoins,
     setCurrentFavorite: this.setCurrentFavorite,
     handleChartSelect: this.handleChartSelect,
+    changeTheme: this.changeTheme,
+    darkTheme: true,
     timeInterval: 'months',
     // currentFavorite: 'ZEC',
     coinList: null // not empty object, needs to be falsey for Content.js logic

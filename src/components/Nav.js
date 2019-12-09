@@ -42,6 +42,20 @@ const ControlButton = ({ name }) => (
   </Context.Consumer>
 );
 
+const ThemeControl = () => (
+  <Context.Consumer>
+    {
+      ({ darkTheme, changeTheme }) => (
+        <ControlButtonElem
+          onClick={ changeTheme }
+        >
+          { darkTheme ? 'Light Theme' : 'Dark Theme' }
+        </ControlButtonElem>
+      )
+    }
+  </Context.Consumer>
+);
+
 export default function() {
   return (
     <Nav>
@@ -49,6 +63,7 @@ export default function() {
       <div/>
       <ControlButton name="dashboard" active/>
       <ControlButton name="settings"/>
+      <ThemeControl/>
     </Nav>
   );
 };
