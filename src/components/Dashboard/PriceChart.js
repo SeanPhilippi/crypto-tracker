@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactHighcharts from 'react-highcharts';
 import { Context } from '../Provider';
-import { Tile } from '../shared/Tile';
+import { ChartTile } from '../shared/Tile';
 import ChartSelect from './ChartSelect';
 import Loading from '../shared/Loading';
 import highchartsConfig from './highchartsConfig';
@@ -13,7 +13,7 @@ const PriceChart = () => (
   <Context.Consumer>
     {
       ({ historicalData, handleChartSelect }) => (
-        <Tile>
+        <ChartTile>
           <ChartSelect
             defaultValue={ 'months' }
             onChange={ ({ target: { value } }) => handleChartSelect(value) }
@@ -28,7 +28,7 @@ const PriceChart = () => (
             ? <ReactHighcharts config={ highchartsConfig(historicalData) }/>
             : <Loading message='Loading Historical Data'/>
           }
-        </Tile>
+        </ChartTile>
       )
     }
   </Context.Consumer>

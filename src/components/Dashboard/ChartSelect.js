@@ -8,6 +8,9 @@ const ChartSelect = styled.select`
   border: 1px solid;
   float: right;
   outline: none;
+  position: absolute;
+  right: 15px;
+  top: 15px
 `;
 
 export default ChartSelect;

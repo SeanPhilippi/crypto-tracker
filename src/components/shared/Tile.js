@@ -15,6 +15,8 @@ export const Tile = styled.div`
 export const ChartTile = styled(Tile)`
   display: flex;
   align-items: center;
+  justify-content: center;
+  position: relative;
 `;
 
 export const SelectableTile = styled(Tile)`
