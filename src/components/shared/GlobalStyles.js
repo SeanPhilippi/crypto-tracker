@@ -1,5 +1,6 @@
-const theme = 'dark';
-// const theme = 'light';
+import styled, { createGlobalStyle } from 'styled-components';
+
+const theme = ({ lightTheme }) => lightTheme ? 'light' : 'dark';
 export const lightTheme = theme === 'light';
 
 export const color1 = lightTheme ? 'white' : '#061a44'; // white / dark blue
@@ -24,3 +25,11 @@ export const fontSizeS = 'font-size: 1.0em';
 export const fontSizeXS = 'font-size: .75em';
 
 export const textAlignCenter = 'text-align: center';
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    ${ ({ lightTheme }) => lightTheme && 'background: #e1eaee; color: #061a44' }
+  }
+`;
+
+export default GlobalStyle;

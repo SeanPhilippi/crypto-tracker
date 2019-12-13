@@ -4,7 +4,7 @@ import {
   backgroundColor1,
   cyanBoxShadow,
   redBoxShadow
-} from './styles';
+} from './GlobalStyles';
 
 export const Tile = styled.div`
   ${ subtleBoxShadow };

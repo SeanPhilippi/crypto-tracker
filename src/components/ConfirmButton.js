@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Context } from './Provider';
-import { fontSizeM, textHover, color3 } from './shared/styles';
+import { fontSizeM, textHover, color3 } from './shared/GlobalStyles';
 
 const ConfirmButtonStyled = styled.div`
   margin: 20px;
