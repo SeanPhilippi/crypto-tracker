@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { Context } from './Provider';
-import { color3, textHover } from './shared/styles';
+import { color3, textHover } from './shared/GlobalStyles';
 
 const Logo = styled.div`
   font-size: 1.7rem;
@@ -45,11 +45,11 @@ const ControlButton = ({ name }) => (
 const ThemeControl = () => (
   <Context.Consumer>
     {
-      ({ darkTheme, changeTheme }) => (
+      ({ lightTheme, changeTheme }) => (
         <ControlButtonElem
           onClick={ changeTheme }
         >
-          { darkTheme ? 'Light Theme' : 'Dark Theme' }
+          { lightTheme ? 'Light Theme' : 'Dark Theme' }
         </ControlButtonElem>
       )
     }
@@ -57,6 +57,7 @@ const ThemeControl = () => (
 );
 
 export default function() {
+  console.log('color3', color3)
   return (
     <Nav>
       <Logo>Crypto Tracker</Logo>

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { backgroundColor2, fontSizeS } from '../shared/styles';
+import { backgroundColor2, fontSizeS } from '../shared/GlobalStyles';
 
 const ChartSelect = styled.select`
   ${ backgroundColor2 };

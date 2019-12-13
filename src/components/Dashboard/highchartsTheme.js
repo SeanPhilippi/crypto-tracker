@@ -1,4 +1,4 @@
-import { color1 } from '../shared/styles';
+import { color1 } from '../shared/GlobalStyles';
 
 export default {
   colors: [

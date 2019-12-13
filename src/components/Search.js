@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Context } from '../components/Provider';
-import { backgroundColor2, fontSizeS } from './shared/styles';
+import { backgroundColor2, fontSizeS } from './shared/GlobalStyles';
 import fuzzy from 'fuzzy';
 const _ = require('lodash');
 
