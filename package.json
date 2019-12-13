@@ -1,6 +1,6 @@
 {
   "name": "crypto-tracker",
-  "homepage": "http://seanphilippi.github.io/crypto-tracker",
+  "homepage": "http://seanphilippi.github.io",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
