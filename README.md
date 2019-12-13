@@ -9,4 +9,4 @@ Dashboard where you can search for and save your favorite cryptocurrencies and s
 
 ## Deployment
 * Currently under construction but feel free to take a look!<br>
-http://seanphilippi.github.io/crypto-tracker
+https://seanphilippi.github.io/crypto-tracker

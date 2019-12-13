@@ -13,7 +13,7 @@ const CoinImageStyled = styled.img`
 const CoinImage = ({ coin, spotlight }) => (
   <CoinImageStyled
     spotlight={ spotlight }
-    src={ `http://cryptocompare.com/${ coin.ImageUrl }` }
+    src={ `https://cryptocompare.com/${ coin.ImageUrl }` }
     alt={ coin.CoinSymbol }
   />
 );
