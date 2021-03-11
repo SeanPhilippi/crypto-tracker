@@ -19,6 +19,6 @@ const App = () => {
       </Provider>
     </Layout>
   );
-};i
+};
 
 export default App;

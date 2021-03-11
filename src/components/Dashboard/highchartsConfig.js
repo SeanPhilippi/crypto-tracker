@@ -1,21 +1,18 @@
-export default function(historicalData) {
+export default historicalData => {
   return {
     title: {
-      text: ""
+      text: ''
     },
-    // subtitle: {
-    //   text: "Source: thesolarfoundation.com"
-    // },
     yAxis: {
       title: {
-        text: "Price"
+        text: 'Price'
       }
     },
     xAxis: { type: 'datetime' },
     legend: {
-      layout: "vertical",
-      align: "right",
-      verticalAlign: "middle"
+      layout: 'vertical',
+      align: 'right',
+      verticalAlign: 'middle'
     },
     plotOptions: {
       series: {
@@ -34,9 +31,9 @@ export default function(historicalData) {
           },
           chartOptions: {
             legend: {
-              layout: "horizontal",
-              align: "center",
-              verticalAlign: "bottom"
+              layout: 'horizontal',
+              align: 'center',
+              verticalAlign: 'bottom'
             }
           }
         }
