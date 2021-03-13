@@ -61,7 +61,7 @@ export default function () {
       <div />
       <ControlButton name='dashboard' active />
       <ControlButton name='settings' />
-      <ThemeControl />
+      {/* <ThemeControl /> */}
     </Nav>
   );
 }
