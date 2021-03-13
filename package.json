@@ -1,6 +1,6 @@
 {
   "name": "crypto-tracker",
-  "homepage": "http://seanphilippi.github.io/crypto-tracker",
+  "homepage": "https://seanphilippi.github.io",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -8,7 +8,7 @@
     "cryptocompare": "^1.0.0",
     "fuzzy": "^0.1.3",
     "gh-pages": "^2.1.1",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.20",
     "moment": "^2.24.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",

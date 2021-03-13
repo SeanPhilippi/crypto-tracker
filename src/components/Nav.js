@@ -15,56 +15,53 @@ const Nav = styled.div`
 
 const ControlButtonElem = styled.div`
   cursor: pointer;
-  ${ props => props.active && css`
-    color: ${ color3 };
-    ${ textHover };
-  ` }
-  ${ props => props.hidden && css`
-    display: none;
-  ` }
+  ${props =>
+    props.active &&
+    css`
+      color: ${color3};
+      ${textHover};
+    `}
+  ${props =>
+    props.hidden &&
+    css`
+      display: none;
+    `}
 `;
 
 const toProperCase = lower => lower[0].toUpperCase().concat(lower.slice(1));
 
 const ControlButton = ({ name }) => (
   <Context.Consumer>
-    {
-      ({ page, setPage, firstVisit }) => (
-        <ControlButtonElem
-          active={ page === name }
-          onClick={ () => setPage(name) }
-          hidden={ firstVisit && name === 'dashboard' }
-        >
-          { toProperCase(name) }
-        </ControlButtonElem>
-      )
-    }
+    {({ page, setPage, firstVisit }) => (
+      <ControlButtonElem
+        active={page === name}
+        onClick={() => setPage(name)}
+        hidden={firstVisit && name === 'dashboard'}
+      >
+        {toProperCase(name)}
+      </ControlButtonElem>
+    )}
   </Context.Consumer>
 );
 
 const ThemeControl = () => (
   <Context.Consumer>
-    {
-      ({ lightTheme, changeTheme }) => (
-        <ControlButtonElem
-          onClick={ changeTheme }
-        >
-          { lightTheme ? 'Light Theme' : 'Dark Theme' }
-        </ControlButtonElem>
-      )
-    }
+    {({ darkTheme, changeTheme }) => (
+      <ControlButtonElem onClick={changeTheme}>
+        {darkTheme ? 'Light Theme' : 'Dark Theme'}
+      </ControlButtonElem>
+    )}
   </Context.Consumer>
 );
 
-export default function() {
-  console.log('color3', color3)
+export default function () {
   return (
     <Nav>
       <Logo>Crypto Tracker</Logo>
-      <div/>
-      <ControlButton name="dashboard" active/>
-      <ControlButton name="settings"/>
-      <ThemeControl/>
+      <div />
+      <ControlButton name='dashboard' active />
+      <ControlButton name='settings' />
+      <ThemeControl />
     </Nav>
   );
-};
+}

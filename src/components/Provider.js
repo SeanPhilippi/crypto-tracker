@@ -1,6 +1,7 @@
 import React, { createContext, Component } from 'react';
 import moment from 'moment';
 const cc = require('cryptocompare');
+
 cc.setApiKey(process.env.REACT_APP_CRYPTO_API_KEY);
 
 export const Context = createContext();
@@ -25,26 +26,26 @@ export class Provider extends Component {
     // store return of price data for favorites in prices, set to state.prices
     // but only if not first visit, don't want data for default coins in state.favorites
     const prices = await this.prices();
-    console.log('fetched prices', prices)
     // filter the empty price objects
     const filteredPrices = prices.filter(price => Object.keys(price).length);
     this.setState({ prices: filteredPrices });
   };
 
   fetchHistoricalData = async () => {
-    console.log('in fetchHistoricalData')
     if (this.state.firstVisit) return;
-    console.log('fetching results for historicalData')
     const results = await this.historical();
-    const historicalData = [{
-      name: this.state.currentFavorite,
-      data: results.map((ticker, index) => [
-        moment().subtract({ [this.state.timeInterval]: TIME_UNITS - index }).valueOf(),
-        ticker.USD
-      ])
-    }];
-    console.log('historical', historicalData)
-    this.setState({ historicalData })
+    const historicalData = [
+      {
+        name: this.state.currentFavorite,
+        data: results.map((ticker, index) => [
+          moment()
+            .subtract({ [this.state.timeInterval]: TIME_UNITS - index })
+            .valueOf(),
+          ticker.USD,
+        ]),
+      },
+    ];
+    this.setState({ historicalData });
   };
 
   historical = () => {
@@ -60,10 +61,12 @@ export class Provider extends Component {
           ['USD'],
           // what date. units is decremented with each loop which will
           // create a series of price data points that can be charted
-          moment().subtract({ [this.state.timeInvterval]: units }).toDate()
+          moment()
+            .subtract({ [this.state.timeInterval]: units })
+            .toDate()
         )
       );
-    };
+    }
     // returns a stingle promise only after all the promises in the array given have resolved
     return Promise.all(promises);
   };
@@ -78,9 +81,7 @@ export class Provider extends Component {
         // returns an object of objects
         const priceData = await cc.priceFull(favorites[i], 'USD');
         returnData.push(priceData);
-      } catch(err) {
-        console.warn('Fetch price error: ', err);
-      }
+      } catch (err) {}
     }
     return returnData;
   };
@@ -92,7 +93,9 @@ export class Provider extends Component {
   };
 
   removeCoin = key => {
-    this.setState({ favorites: this.state.favorites.filter(coin => coin !== key ) });
+    this.setState({
+      favorites: this.state.favorites.filter(coin => coin !== key),
+    });
   };
 
   isInFavorites = key => this.state.favorites.includes(key);
@@ -110,7 +113,8 @@ export class Provider extends Component {
         currentFavorite,
         prices: null,
         historical: null,
-      }, () => {
+      },
+      () => {
         this.fetchPrices();
         this.fetchHistoricalData();
       }
@@ -129,14 +133,19 @@ export class Provider extends Component {
       { currentFavorite: sym, historicalData: null },
       this.fetchHistoricalData
     );
-    localStorage.setItem('cryptoTrackerData', JSON.stringify({
-      ...JSON.parse(localStorage.getItem('cryptoTrackerData')),
-      currentFavorite: sym,
-    }))
+    localStorage.setItem(
+      'cryptoTrackerData',
+      JSON.stringify({
+        ...JSON.parse(localStorage.getItem('cryptoTrackerData')),
+        currentFavorite: sym,
+      })
+    );
   };
 
   savedSettings = () => {
-    const cryptoTrackerData = JSON.parse(localStorage.getItem('cryptoTrackerData'));
+    const cryptoTrackerData = JSON.parse(
+      localStorage.getItem('cryptoTrackerData')
+    );
     if (!cryptoTrackerData) {
       // if no localStorage data, set firstVisit to true, and page to 'settings'
       return { page: 'settings', firstVisit: true };
@@ -146,15 +155,17 @@ export class Provider extends Component {
   };
 
   handleChartSelect = value => {
-    console.log('value', value)
-    this.setState({
-      timeInterval: value,
-      historicalData: null
-    }, this.fetchHistoricalData);
+    this.setState(
+      {
+        timeInterval: value,
+        historicalData: null,
+      },
+      this.fetchHistoricalData
+    );
   };
 
   changeTheme = () => {
-    this.setState({ lightTheme: !this.state.lightTheme })
+    this.setState({ darkTheme: !this.state.darkTheme });
   };
 
   // initial state
@@ -175,15 +186,15 @@ export class Provider extends Component {
     lightTheme: false,
     timeInterval: 'months',
     // currentFavorite: 'ZEC',
-    coinList: null // not empty object, needs to be falsey for Content.js logic
+    coinList: null, // not empty object, needs to be falsey for Content.js logic
   };
 
   render() {
     return (
       // like Redux Provider that is given the store
-      <Context.Provider value={ this.state }>
-        { this.props.children }
+      <Context.Provider value={this.state}>
+        {this.props.children}
       </Context.Provider>
     );
-  };
-};
+  }
+}

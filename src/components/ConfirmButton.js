@@ -5,12 +5,12 @@ import { fontSizeM, textHover, color3 } from './shared/GlobalStyles';
 
 const ConfirmButtonStyled = styled.div`
   margin: 20px;
-  color: ${ color3 };
-  ${ fontSizeM };
+  color: ${color3};
+  ${fontSizeM};
   padding: 5px;
   cursor: pointer;
   &:hover {
-    ${ textHover }
+    ${textHover}
   }
 `;
 
@@ -21,15 +21,13 @@ const CenterDiv = styled.div`
 
 const ConfirmButton = () => (
   <Context.Consumer>
-    {
-      ({ confirmFavorites }) => (
-        <CenterDiv>
-          <ConfirmButtonStyled onClick={ confirmFavorites }>
-            Confirm Favorites
-          </ConfirmButtonStyled>
-        </CenterDiv>
-      )
-    }
+    {({ confirmFavorites }) => (
+      <CenterDiv>
+        <ConfirmButtonStyled onClick={confirmFavorites}>
+          Confirm Favorites
+        </ConfirmButtonStyled>
+      </CenterDiv>
+    )}
   </Context.Consumer>
 );
 

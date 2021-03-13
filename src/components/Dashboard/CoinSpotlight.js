@@ -10,14 +10,12 @@ const SpotlightName = styled.h2`
 
 const CoinSpotlight = () => (
   <Context.Consumer>
-    {
-      ({ currentFavorite, coinList }) => (
-        <Tile>
-          <SpotlightName>{ coinList[currentFavorite].CoinName }</SpotlightName>
-          <CoinImage spotlight coin={ coinList[currentFavorite] }/>
-        </Tile>
-      )
-    }
+    {({ currentFavorite, coinList }) => (
+      <Tile>
+        <SpotlightName>{coinList[currentFavorite].CoinName}</SpotlightName>
+        <CoinImage spotlight coin={coinList[currentFavorite]} />
+      </Tile>
+    )}
   </Context.Consumer>
 );
 

@@ -6,7 +6,7 @@ import CoinGrid from './CoinGrid';
 import Search from './Search';
 
 const Settings = () => (
-  <Page name="settings">
+  <Page name='settings'>
     <Welcome />
     <CoinGrid topSection />
     <ConfirmButton />
