@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "168fde85cfdfd88dd0bf7d88d0e4cfc2",
+    "revision": "e84edfd2230fb98bb6826e98625ee10e",
     "url": "/crypto-tracker/index.html"
   },
   {
-    "revision": "f635c5473f8fdcc176b5",
+    "revision": "043b3d63bf92fe6b4bbc",
     "url": "/crypto-tracker/static/css/main.6a993d48.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/crypto-tracker/static/js/2.3cd82475.chunk.js"
   },
   {
-    "revision": "f635c5473f8fdcc176b5",
-    "url": "/crypto-tracker/static/js/main.e9d43b7c.chunk.js"
+    "revision": "043b3d63bf92fe6b4bbc",
+    "url": "/crypto-tracker/static/js/main.45e8d19a.chunk.js"
   },
   {
     "revision": "749d2d0ce861667354a4",
