@@ -12,15 +12,13 @@ const PriceGridStyled = styled.div`
 
 const PriceGrid = () => (
   <Context.Consumer>
-    {
-      ({ prices }) => (
-        <PriceGridStyled>
-          {
-            prices.map((price, idx) => <PriceTile key={ `Price-Tile-${ idx }` } idx={ idx } price={ price } />)
-          }
-        </PriceGridStyled>
-      )
-    }
+    {({ prices }) => (
+      <PriceGridStyled>
+        {prices.map((price, idx) => (
+          <PriceTile key={`Price-Tile-${idx}`} idx={idx} price={price} />
+        ))}
+      </PriceGridStyled>
+    )}
   </Context.Consumer>
 );
 

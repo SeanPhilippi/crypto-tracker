@@ -11,28 +11,26 @@ ReactHighcharts.Highcharts.setOptions(highchartsTheme);
 
 const PriceChart = () => (
   <Context.Consumer>
-    {
-      ({ historicalData, handleChartSelect }) => {
-        return (
-          <ChartTile>
-            <ChartSelect
-              defaultValue={ 'months' }
-              onChange={ ({ target: { value } }) => handleChartSelect(value) }
-            >
-              <option value='days'>Days</option>
-              <option value='weeks'>Weeks</option>
-              <option value='months'>Months</option>
-              <option value='years'>Years</option>
-            </ChartSelect>
-            {
-              historicalData
-              ? <ReactHighcharts config={ highchartsConfig(historicalData)}/>
-              : <Loading message='Loading Historical Data'/>
-            }
-          </ChartTile>
-        )
-      }
-    }
+    {({ historicalData, handleChartSelect }) => {
+      return (
+        <ChartTile>
+          <ChartSelect
+            defaultValue={'months'}
+            onChange={({ target: { value } }) => handleChartSelect(value)}
+          >
+            <option value='days'>Days</option>
+            <option value='weeks'>Weeks</option>
+            <option value='months'>Months</option>
+            <option value='years'>Years</option>
+          </ChartSelect>
+          {historicalData ? (
+            <ReactHighcharts config={highchartsConfig(historicalData)} />
+          ) : (
+            <Loading message='Loading Historical Data' />
+          )}
+        </ChartTile>
+      );
+    }}
   </Context.Consumer>
 );
 

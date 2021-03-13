@@ -11,7 +11,7 @@ const App = () => {
   return (
     <Layout>
       <Provider>
-        <Nav/>
+        <Nav />
         <Content>
           <Settings />
           <Dashboard />

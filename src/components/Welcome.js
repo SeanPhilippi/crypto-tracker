@@ -3,8 +3,8 @@ import { Context } from './Provider';
 
 const Welcome = () => (
   <Context.Consumer>
-    {
-      ({ firstVisit }) => firstVisit ? (
+    {({ firstVisit }) =>
+      firstVisit ? (
         <div>
           Welcome to CryptoTracker, please select your favorite coins to begin.
         </div>

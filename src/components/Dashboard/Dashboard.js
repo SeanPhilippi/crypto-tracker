@@ -13,7 +13,7 @@ const ChartGrid = styled.div`
 `;
 
 const Dashboard = () => (
-  <Page name="dashboard">
+  <Page name='dashboard'>
     <PriceGrid />
     <ChartGrid>
       <CoinSpotlight />

@@ -1,43 +1,43 @@
 export default historicalData => {
   return {
     title: {
-      text: ''
+      text: '',
     },
     yAxis: {
       title: {
-        text: 'Price'
-      }
+        text: 'Price',
+      },
     },
     xAxis: { type: 'datetime' },
     legend: {
       layout: 'vertical',
       align: 'right',
-      verticalAlign: 'middle'
+      verticalAlign: 'middle',
     },
     plotOptions: {
       series: {
         label: {
-          connectorAllowed: false
+          connectorAllowed: false,
         },
-        pointStart: 2010
-      }
+        pointStart: 2010,
+      },
     },
     series: historicalData,
     responsive: {
       rules: [
         {
           condition: {
-            maxWidth: 500
+            maxWidth: 500,
           },
           chartOptions: {
             legend: {
               layout: 'horizontal',
               align: 'center',
-              verticalAlign: 'bottom'
-            }
-          }
-        }
-      ]
-    }
+              verticalAlign: 'bottom',
+            },
+          },
+        },
+      ],
+    },
   };
 };

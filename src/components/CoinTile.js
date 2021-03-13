@@ -11,29 +11,30 @@ const clickCoinHandler = (topSection, coinKey, addCoin, removeCoin) => {
 const CoinTile = ({ coinKey, topSection }) => {
   return (
     <Context.Consumer>
-      {
-        ({
-          coinList,
-          addCoin,
-          removeCoin,
-          isInFavorites
-        }) => {
-          const coin = coinList[coinKey];
-          let TileClass = SelectableTile;
-          if (topSection) {
-            TileClass = DeletableTile;
-          } else if (isInFavorites(coinKey)) {
-            TileClass = DisabledTile;
-          }
-
-          return (
-            <TileClass onClick={ () => clickCoinHandler(topSection, coinKey, addCoin, removeCoin) }>
-              <CoinHeaderGrid topSection={ topSection } name={ coin.CoinName } symbol={ coin.Symbol } />
-              <CoinImage coin={ coin } />
-            </TileClass>
-          )
+      {({ coinList, addCoin, removeCoin, isInFavorites }) => {
+        const coin = coinList[coinKey];
+        let TileClass = SelectableTile;
+        if (topSection) {
+          TileClass = DeletableTile;
+        } else if (isInFavorites(coinKey)) {
+          TileClass = DisabledTile;
         }
-      }
+
+        return (
+          <TileClass
+            onClick={() =>
+              clickCoinHandler(topSection, coinKey, addCoin, removeCoin)
+            }
+          >
+            <CoinHeaderGrid
+              topSection={topSection}
+              name={coin.CoinName}
+              symbol={coin.Symbol}
+            />
+            <CoinImage coin={coin} />
+          </TileClass>
+        );
+      }}
     </Context.Consumer>
   );
 };

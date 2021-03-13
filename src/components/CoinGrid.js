@@ -12,31 +12,27 @@ export const CoinGridStyled = styled.div`
 
 const getLowerSectionCoins = (coinList, filteredCoins) => {
   // if filteredCoins exist, return the keys, else return first 100 of coinList keys array
-  return (filteredCoins && Object.keys(filteredCoins)) || Object.keys(coinList).slice(0, 100);
+  return (
+    (filteredCoins && Object.keys(filteredCoins)) ||
+    Object.keys(coinList).slice(0, 100)
+  );
 };
 
-const getCoinsToDisplay = (
-  coinList,
-  filteredCoins,
-  topSection,
-  favorites,
-) => {
+const getCoinsToDisplay = (coinList, filteredCoins, topSection, favorites) => {
   return topSection ? favorites : getLowerSectionCoins(coinList, filteredCoins);
 };
 
 const CoinGrid = ({ topSection }) => (
   <Context.Consumer>
-    {
-      ({ coinList, filteredCoins, favorites }) => (
-        <CoinGridStyled>
-          {
-            getCoinsToDisplay(coinList, filteredCoins, topSection, favorites).map(
-              coinKey => <CoinTile key={ coinKey } topSection={ topSection } coinKey={ coinKey } />
-            )
-          }
-        </CoinGridStyled>
-      )
-    }
+    {({ coinList, filteredCoins, favorites }) => (
+      <CoinGridStyled>
+        {getCoinsToDisplay(coinList, filteredCoins, topSection, favorites).map(
+          coinKey => (
+            <CoinTile key={coinKey} topSection={topSection} coinKey={coinKey} />
+          ),
+        )}
+      </CoinGridStyled>
+    )}
   </Context.Consumer>
 );
 

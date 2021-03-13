@@ -11,8 +11,8 @@ const SearchGrid = styled.div`
 `;
 
 const SearchInput = styled.input`
-  ${ backgroundColor2 };
-  ${ fontSizeS };
+  ${backgroundColor2};
+  ${fontSizeS};
   border: 1px solid;
   height: 25px;
   color: #1163c9;
@@ -35,7 +35,7 @@ const handleFilter = _.debounce((searchText, coinList, setFilteredCoins) => {
   const filteredCoins = _.pickBy(coinList, (result, symKey) => {
     const coinName = result.CoinName;
     return fuzzyResults.includes(symKey) || fuzzyResults.includes(coinName);
-  })
+  });
   // set the filtered coins obj to state.filteredCoins
   setFilteredCoins(filteredCoins);
 }, 500);
@@ -48,14 +48,14 @@ const filterCoins = (e, setFilteredCoins, coinList) => {
 
 const Search = () => (
   <Context.Consumer>
-    {
-      ({ setFilteredCoins, coinList }) => (
-        <SearchGrid>
-          <h2>Search all coins</h2>
-          <SearchInput onKeyUp={ e => filterCoins(e, setFilteredCoins, coinList) } />
-        </SearchGrid>
-      )
-    }
+    {({ setFilteredCoins, coinList }) => (
+      <SearchGrid>
+        <h2>Search all coins</h2>
+        <SearchInput
+          onKeyUp={e => filterCoins(e, setFilteredCoins, coinList)}
+        />
+      </SearchGrid>
+    )}
   </Context.Consumer>
 );
 
