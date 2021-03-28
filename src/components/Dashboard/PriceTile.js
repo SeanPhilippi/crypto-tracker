@@ -5,7 +5,14 @@ import { Context } from '../Provider';
 import { fontSizeS, fontSizeL, cyanBoxShadow } from '../shared/styles';
 import { CoinHeaderGridStyled } from '../CoinHeaderGrid';
 
-const formatNumber = number => +(number + '').slice(0, 7);
+// const formatNumber = number => (number + '').slice(0, 7);
+const formatNumber = number => {
+  if (number.toString().includes('e')) {
+    return number;
+  } else {
+    return number.toString().slice(0, 7);
+  }
+}
 
 const TickerPrice = styled.div`
   ${fontSizeL};
@@ -44,6 +51,7 @@ const PriceTileStyled = styled(SelectableTile)`
 `;
 
 const PriceTile = ({ sym, data, currentFavorite, setCurrentFavorite }) => {
+  console.log('PriceTile price', data)
   return (
     <PriceTileStyled
       onClick={setCurrentFavorite}
@@ -52,10 +60,10 @@ const PriceTile = ({ sym, data, currentFavorite, setCurrentFavorite }) => {
       <CoinHeaderGridStyled>
         <div>{sym}</div>
         <ChangePercentStyled red={data.CHANGEPCT24HOUR < 0}>
-          {formatNumber(data.CHANGEPCT24HOUR)}
+          {formatNumber(data.CHANGEPCT24HOUR)}%
         </ChangePercentStyled>
       </CoinHeaderGridStyled>
-      <TickerPrice>${formatNumber(data.PRICE)}%</TickerPrice>
+      <TickerPrice>${typeof data.PRICE === 'number' ? formatNumber(data.PRICE) : data.PRICE}</TickerPrice>
     </PriceTileStyled>
   );
 };
@@ -74,7 +82,7 @@ const PriceTileCompact = ({
     >
       <JustifyLeft>{sym}</JustifyLeft>
       <ChangePercentStyled red={data.CHANGEPCT24HOUR < 0}>
-        {formatNumber(data.CHANGEPCT24HOUR)}
+        {formatNumber(data.CHANGEPCT24HOUR)}%
       </ChangePercentStyled>
       <div>${formatNumber(data.PRICE)}</div>
     </PriceTileStyled>

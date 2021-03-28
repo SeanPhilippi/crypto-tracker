@@ -32,12 +32,7 @@ const handleFilter = _.debounce((searchText, coinList, setFilteredCoins) => {
     .filter(searchText, searchStringsArray)
     .map(result => result.string);
   // return an object from an object and pick a list of coin keys based on a callback function
-  const filteredCoins = _.pickBy(coinList, (result, symKey) => {
-    const coinName = result.CoinName;
-    return fuzzyResults.includes(symKey) || fuzzyResults.includes(coinName);
-  });
-  // set the filtered coins obj to state.filteredCoins
-  setFilteredCoins(filteredCoins);
+  setFilteredCoins(fuzzyResults);
 }, 500);
 
 const filterCoins = (e, setFilteredCoins, coinList) => {

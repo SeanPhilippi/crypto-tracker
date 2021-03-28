@@ -10,23 +10,41 @@ export const CoinGridStyled = styled.div`
   margin-top: 20px;
 `;
 
-const getLowerSectionCoins = (coinList, filteredCoins) => {
-  // if filteredCoins exist, return the keys, else return first 100 of coinList keys array
-  return (
-    (filteredCoins && Object.keys(filteredCoins)) ||
-    Object.keys(coinList).slice(0, 100)
-  );
+const getLowerSectionCoins = (coinList, filteredCoins, topMarketCapCoins) => {
+  if (!filteredCoins) {
+    return topMarketCapCoins;
+  }
+
+  const coinSymbols = Object.keys(coinList);
+  const coinNames = coinSymbols.map(symbol => coinList[symbol].CoinName);
+  const coins = coinSymbols.map(symbol => coinList[symbol]);
+  const coinsArr = [];
+  for (const coin of filteredCoins) {
+    if (coinSymbols.includes(coin)) {
+      if (!coinsArr.includes(coin)) {
+        coinsArr.push(coin);
+      }
+    } else if (coinNames.includes(coin)) {
+      const coinObj = coins.find(obj => {
+        return obj.CoinName === coin;
+      });
+      if (!coinsArr.includes(coinObj.Symbol)) {
+        coinsArr.push(coinObj.Symbol);
+      }
+    }
+  }
+  return coinsArr;
 };
 
-const getCoinsToDisplay = (coinList, filteredCoins, topSection, favorites) => {
-  return topSection ? favorites : getLowerSectionCoins(coinList, filteredCoins);
+const getCoinsToDisplay = (coinList, filteredCoins, topSection, favorites, topMarketCapCoins) => {
+  return topSection ? favorites : getLowerSectionCoins(coinList, filteredCoins, topMarketCapCoins);
 };
 
 const CoinGrid = ({ topSection }) => (
   <Context.Consumer>
-    {({ coinList, filteredCoins, favorites }) => (
+    {({ coinList, filteredCoins, favorites, topMarketCapCoins }) => (
       <CoinGridStyled>
-        {getCoinsToDisplay(coinList, filteredCoins, topSection, favorites).map(
+        {topMarketCapCoins && coinList && getCoinsToDisplay(coinList, filteredCoins, topSection, favorites, topMarketCapCoins).map(
           coinKey => (
             <CoinTile key={coinKey} topSection={topSection} coinKey={coinKey} />
           ),
