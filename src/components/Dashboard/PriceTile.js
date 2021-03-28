@@ -5,7 +5,6 @@ import { Context } from '../Provider';
 import { fontSizeS, fontSizeL, cyanBoxShadow } from '../shared/styles';
 import { CoinHeaderGridStyled } from '../CoinHeaderGrid';
 
-// const formatNumber = number => (number + '').slice(0, 7);
 const formatNumber = number => {
   if (number.toString().includes('e')) {
     return number;
