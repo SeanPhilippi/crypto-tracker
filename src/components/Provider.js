@@ -12,6 +12,7 @@ const TIME_UNITS = 10;
 export class Provider extends Component {
   componentDidMount = () => {
     this.fetchCoins();
+    this.fetchTopMarketCapCoins();
     this.fetchPrices();
     this.fetchHistoricalData();
   };
@@ -46,6 +47,13 @@ export class Provider extends Component {
       },
     ];
     this.setState({ historicalData });
+  };
+
+  fetchTopMarketCapCoins = async () => {
+    const topMarketCapCoins = await fetch(`https://min-api.cryptocompare.com/data/top/mktcapfull?limit=100&tsym=USD&api_key=${process.env.REACT_APP_CRYPTO_API_KEY}`)
+      .then(res => res.json())
+      .then(data => data.Data.map(coin => coin.CoinInfo.Name));
+    this.setState({ topMarketCapCoins });
   };
 
   historical = () => {
@@ -171,7 +179,7 @@ export class Provider extends Component {
   // initial state
   state = {
     page: 'settings',
-    favorites: ['ZEC', 'DOGE', 'ETH', 'XMR'], // keys for coins
+    favorites: ['ZEC', 'DOGE', 'ETH', 'BTC', 'BCH'], // keys for coins
     firstVisit: true,
     ...this.savedSettings(),
     setPage: this.setPage,
@@ -187,6 +195,7 @@ export class Provider extends Component {
     timeInterval: 'months',
     // currentFavorite: 'ZEC',
     coinList: null, // not empty object, needs to be falsey for Content.js logic
+    topMarketCapCoins: null,
   };
 
   render() {
