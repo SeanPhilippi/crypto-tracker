@@ -179,7 +179,8 @@ export class Provider extends Component {
   // initial state
   state = {
     page: 'settings',
-    favorites: ['ZEC', 'DOGE', 'ETH', 'BTC', 'BCH'], // keys for coins
+    // favorites: ['ZEC', 'DOGE', 'ETH', 'BTC', 'BCH'], // keys for coins
+    favorites: [],
     firstVisit: true,
     ...this.savedSettings(),
     setPage: this.setPage,
