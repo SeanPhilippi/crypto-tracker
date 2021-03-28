@@ -8,13 +8,14 @@ const Logo = styled.div`
 `;
 
 const Nav = styled.div`
-  display: grid;
+  display: flex;
+  justify-content: space-between
   margin-bottom: 40px;
-  grid-template-columns: 180px auto 100px 100px;
 `;
 
 const ControlButtonElem = styled.div`
   cursor: pointer;
+  margin-left: 40px;
   ${props =>
     props.active &&
     css`
@@ -59,9 +60,11 @@ export default function () {
     <Nav>
       <Logo>Crypto Tracker</Logo>
       <div />
-      <ControlButton name='dashboard' active />
-      <ControlButton name='settings' />
-      <ThemeControl />
+      <div style={{ display: 'flex' }}>
+        <ControlButton name='dashboard' active />
+        <ControlButton name='settings' />
+      </div>
+      {/* <ThemeControl /> */}
     </Nav>
   );
 }
