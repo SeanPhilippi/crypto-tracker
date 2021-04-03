@@ -1,4 +1,4 @@
-import React, { createContext, Component } from 'react';
+import React, { createContext, PureComponent } from 'react';
 import moment from 'moment';
 const cc = require('cryptocompare');
 
@@ -9,12 +9,18 @@ export const Context = createContext();
 const MAX_FAVORITES = 10;
 const TIME_UNITS = 10;
 
-export class Provider extends Component {
-  componentDidMount = () => {
+export class Provider extends PureComponent {
+  componentDidMount() {
     this.fetchCoins();
     this.fetchTopMarketCapCoins();
     this.fetchPrices();
     this.fetchHistoricalData();
+  };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.page !== this.state.page) {
+      this.setFilteredCoins(null);
+    }
   };
 
   fetchCoins = async () => {
@@ -75,7 +81,7 @@ export class Provider extends Component {
         )
       );
     }
-    // returns a stingle promise only after all the promises in the array given have resolved
+    // returns a single promise only after all the promises in the array given have resolved
     return Promise.all(promises);
   };
 
@@ -188,6 +194,7 @@ export class Provider extends Component {
     removeCoin: this.removeCoin,
     isInFavorites: this.isInFavorites,
     confirmFavorites: this.confirmFavorites,
+    // filteredCoins: [],
     setFilteredCoins: this.setFilteredCoins,
     setCurrentFavorite: this.setCurrentFavorite,
     handleChartSelect: this.handleChartSelect,

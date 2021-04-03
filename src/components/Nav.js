@@ -55,16 +55,13 @@ const ThemeControl = () => (
   </Context.Consumer>
 );
 
-export default function () {
-  return (
-    <Nav>
-      <Logo>Crypto Tracker</Logo>
-      <div />
-      <div style={{ display: 'flex' }}>
-        <ControlButton name='dashboard' active />
-        <ControlButton name='settings' />
-      </div>
-      {/* <ThemeControl /> */}
-    </Nav>
-  );
-}
+export default () => (
+  <Nav>
+    <Logo>Crypto Tracker</Logo>
+    <div style={{ display: 'flex' }}>
+      <ControlButton name='dashboard' active />
+      <ControlButton name='settings' />
+    </div>
+    {/* <ThemeControl /> */}
+  </Nav>
+)
