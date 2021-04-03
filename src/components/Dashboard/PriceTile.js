@@ -50,7 +50,6 @@ const PriceTileStyled = styled(SelectableTile)`
 `;
 
 const PriceTile = ({ sym, data, currentFavorite, setCurrentFavorite }) => {
-  console.log('PriceTile price', data)
   return (
     <PriceTileStyled
       onClick={setCurrentFavorite}

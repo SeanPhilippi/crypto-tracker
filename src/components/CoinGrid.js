@@ -33,7 +33,10 @@ const getLowerSectionCoins = (coinList, filteredCoins, topMarketCapCoins) => {
       }
     }
   }
-  return coinsArr;
+  // filter out non-trading coins from coinsArr
+  const filteredResults = coinsArr.filter(coin => coinList[coin].IsTrading);
+
+  return filteredResults;
 };
 
 const getCoinsToDisplay = (coinList, filteredCoins, topSection, favorites, topMarketCapCoins) => {
