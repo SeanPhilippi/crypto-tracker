@@ -38,9 +38,7 @@ const handleFilter = _.debounce((searchText, coinList, setFilteredCoins) => {
 const filterCoins = (e, setFilteredCoins, coinList) => {
   const searchText = e.target.value;
   !searchText && setFilteredCoins(null);
-  if (searchText.length > 1) {
-    handleFilter(searchText, coinList, setFilteredCoins);
-  }
+  searchText.length > 1 && handleFilter(searchText, coinList, setFilteredCoins);
 };
 
 const Search = () => (
