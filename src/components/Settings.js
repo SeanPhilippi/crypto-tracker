@@ -10,6 +10,7 @@ const Settings = () => (
     <Welcome />
     <CoinGrid topSection />
     <ConfirmButton />
+    <hr />
     <Search />
     <CoinGrid />
   </Page>

@@ -23,6 +23,7 @@ export const SelectableTile = styled(Tile)`
   &:hover {
     cursor: pointer;
     ${ cyanBoxShadow };
+    color: cyan;
   }
 `;
 

@@ -19,15 +19,23 @@ const DeleteIcon = styled(CoinSymbol)`
   }
 `;
 
-const CoinHeaderGrid = ({ name, symbol, topSection }) => (
-  <CoinHeaderGridStyled>
-    <div>{name}</div>
-    {topSection ? (
-      <DeleteIcon>✕</DeleteIcon>
-    ) : (
-      <CoinSymbol>{symbol}</CoinSymbol>
-    )}
-  </CoinHeaderGridStyled>
-);
+const CoinHeaderGrid = ({ name, symbol, topSection, hover }) => {
+  return (
+    <CoinHeaderGridStyled>
+      <div>{name}</div>
+      {topSection ? (
+        <DeleteIcon>✕</DeleteIcon>
+      ) : (
+        <CoinSymbol>
+          {hover ? (
+            <span style={{ fontSize: '2rem', lineHeight: '1rem' }}>+</span>
+          ) : (
+            symbol
+          )}
+        </CoinSymbol>
+      )}
+    </CoinHeaderGridStyled>
+  );
+};
 
 export default CoinHeaderGrid;
