@@ -5,9 +5,9 @@ const Welcome = () => (
   <Context.Consumer>
     {({ firstVisit }) =>
       firstVisit ? (
-        <div>
+        <h3>
           Welcome to CryptoTracker, please select your favorite coins to begin.
-        </div>
+        </h3>
       ) : null
     }
   </Context.Consumer>

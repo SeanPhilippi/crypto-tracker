@@ -7,10 +7,11 @@ import Search from './Search';
 
 const Settings = () => (
   <Page name='settings'>
-    <Welcome />
+    <h2>Favorites</h2>
     <CoinGrid topSection />
     <ConfirmButton />
     <hr />
+    <Welcome />
     <Search />
     <CoinGrid />
   </Page>
