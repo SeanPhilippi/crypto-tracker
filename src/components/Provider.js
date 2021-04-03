@@ -194,7 +194,6 @@ export class Provider extends PureComponent {
     removeCoin: this.removeCoin,
     isInFavorites: this.isInFavorites,
     confirmFavorites: this.confirmFavorites,
-    // filteredCoins: [],
     setFilteredCoins: this.setFilteredCoins,
     setCurrentFavorite: this.setCurrentFavorite,
     handleChartSelect: this.handleChartSelect,

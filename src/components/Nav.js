@@ -27,6 +27,9 @@ const ControlButtonElem = styled.div`
     css`
       display: none;
     `}
+  &:hover {
+    ${textHover}
+  }
 `;
 
 const toProperCase = lower => lower[0].toUpperCase().concat(lower.slice(1));
