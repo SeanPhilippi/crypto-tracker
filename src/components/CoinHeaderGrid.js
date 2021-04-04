@@ -11,29 +11,19 @@ export const CoinSymbol = styled.div`
   justify-self: right;
 `;
 
-const DeleteIcon = styled(CoinSymbol)`
-  display: none;
-  ${DeletableTile}:hover & {
-    display: block;
-    color: red;
-  }
-`;
-
 const CoinHeaderGrid = ({ name, symbol, topSection, hover }) => {
   return (
     <CoinHeaderGridStyled>
       <div>{name}</div>
-      {topSection ? (
-        <DeleteIcon>✕</DeleteIcon>
-      ) : (
-        <CoinSymbol>
-          {hover ? (
-            <span style={{ fontSize: '2rem', lineHeight: '1rem' }}>+</span>
-          ) : (
-            symbol
-          )}
-        </CoinSymbol>
-      )}
+      <CoinSymbol>
+        {topSection && hover ? (
+          <span style={{ color: 'red', fontSize: '1rem', lineHeight: '1.5rem' }}>✕</span>
+        ) : !topSection && hover ? (
+          <span style={{ fontSize: '2rem', lineHeight: '1rem' }}>+</span>
+        ) : (
+          symbol
+        )}
+      </CoinSymbol>
     </CoinHeaderGridStyled>
   );
 };
