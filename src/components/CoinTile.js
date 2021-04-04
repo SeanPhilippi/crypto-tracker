@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Context } from './Provider';
-import { SelectableTile, DeletableTile, DisabledTile, AddOverlay, AddText } from './shared/Tile';
+import { SelectableTile, DeletableTile, DisabledTile } from './shared/Tile';
 import CoinHeaderGrid from './CoinHeaderGrid';
 import CoinImage from './CoinImage';
 

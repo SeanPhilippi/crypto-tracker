@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { DeletableTile } from './shared/Tile';
 
 export const CoinHeaderGridStyled = styled.div`
   display: grid;
