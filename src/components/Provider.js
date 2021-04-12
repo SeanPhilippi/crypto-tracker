@@ -95,7 +95,10 @@ export class Provider extends PureComponent {
         // returns an object of objects
         const priceData = await cc.priceFull(favorites[i], 'USD');
         returnData.push(priceData);
-      } catch (err) {}
+      } catch (err) {
+        console.error('crypto-compare price fetching error', err)
+        // make a snackbar for error and confirmation messages
+      }
     }
     return returnData;
   };
